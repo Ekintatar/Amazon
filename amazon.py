@@ -1,95 +1,83 @@
+from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 import account
 import time
 
-"Using the Firefox browser"
-browser = webdriver.Chrome('/home/izzet/Downloads/chromedriver')
+
+"Using the Chrome browser"
+browser = webdriver.Chrome('Drivers/chromedriver')
 
 "Target site is Amazon.com"
 browser.get("https://amazon.com")
 
+"Confirm the page is on amazon.com"
+assert browser.find_element(By.ID, "nav-logo").is_displayed(), "page is not on amazon.com"
+
 "Go to log in page"
-browser.find_element_by_id("nav-link-accountList").click()
+browser.find_element(By.ID, "nav-link-accountList").click()
 
 "Email and password fields are selected and filled with the info from the 'account.py' file"
-email = browser.find_element_by_id("ap_email")
-password = browser.find_element_by_id("ap_password")
-email.send_keys(account.mail)
-password.send_keys(account.password)
+browser.find_element(By.ID, "ap_email").send_keys(account.mail)
+browser.find_element(By.ID, "ap_password").send_keys(account.password)
 
 "Logged in"
-login = browser.find_element_by_id("signInSubmit")
-login.click()
+browser.find_element(By.ID, "signInSubmit").click()
 
 "Confirmed the the log in is successful"
-accInfo = browser.find_element_by_class_name("nav-a.nav-a-2.nav-truncate")
-accName = accInfo.text.find(account.name)
+accName = browser.find_element(By.CLASS_NAME, "nav-a.nav-a-2.nav-truncate").text.find(account.name)
 
 "Output of the account owner if the log in is successful"
-if accName > -1 :
-    print("Successfully entered to the account of "+ account.name)
+assert (accName > 0), ("Unable to enter to the account of " + account.name)
 
 
 "Select the search field and enter the desired product then select and click search button"
-searchField = browser.find_element_by_id("twotabsearchtextbox")
-searchButton = browser.find_element_by_class_name("nav-input")
-searchField.send_keys("samsung")
-searchButton.click()
+browser.find_element(By.ID, "twotabsearchtextbox").send_keys("samsung"+ Keys.ENTER)
 
 "Confirm the result page is contains the desired product"
-searchText = browser.find_element_by_class_name("a-color-state.a-text-bold")
-if searchText.text.find('samsung') != -1:
-    print("samsung is searched")
+searchText = browser.find_element(By.CLASS_NAME, "a-color-state.a-text-bold")
+assert searchText.text.find('samsung') > -1 , ("samsung could not be searched")
 
 "Go to second second page"
-pageButton = browser.find_element_by_xpath("//*[@id='search']/div[1]/div[2]/div/span[7]/div/div/div/ul/li[3]/a")
-pageButton.click()
+browser.find_elements(By.CSS_SELECTOR, '.a-section.s-border-bottom .a-normal')[0].click()
 
-"Click on the second product on the page"
-product = browser.find_element_by_xpath('//*[@id="search"]/div[1]/div[2]/div/span[3]/div[1]/div[3]/div/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a/span')
-product.click()
+
+"Click on the third product on the page"
+browser.find_elements(By.CSS_SELECTOR, '.a-size-medium.a-color-base.a-text-normal')[2].click()
+
 
 "Get the products name"
-productName = browser.find_element_by_xpath('//*[@id="productTitle"]').text
+productName = browser.find_element(By.ID, 'productTitle').text.split(' w/')[0]
 
 
 "Click on the 'Add list' button"
-addList = browser.find_element_by_id('add-to-wishlist-button-submit')
-addList.click()
-
-time.sleep(2)
+browser.find_element(By.ID, 'add-to-wishlist-button-submit').click()
 
 
-"Check if the product added to list is same "
-listProductName = browser.find_element_by_xpath("//*[@id='WLHUC_info']/div[1]/ul/li[2]/table/tbody/tr/td/a").text
+"keep the name of the prodcut to check right product is added to list"
+listProductName = WebDriverWait(browser, 3).until(ec.presence_of_all_elements_located((
+    By.ID, 'WLHUC_info')))[0].text.split(' w/')[0]
 
-
-right = True
-for i in range(25):
-    if listProductName[i] != productName[i]:
-        right = False
-
-if right:
-    print("Right product is added to wish list")
+assert listProductName == productName, "Right product is added to wish list"
 
 "Go to wish list page"
-wishList = browser.find_element_by_xpath('//*[@id="WLHUC_viewlist"]/span/span')
-wishList.click()
+browser.find_element(By.ID, 'WLHUC_viewlist').click()
 
-time.sleep(5)
+"Delete the newly added product"
+browser.find_element(By.CSS_SELECTOR, '#a-autoid-7 > span > input').click()
 
-deleteProduct = browser.find_element_by_css_selector('#a-autoid-7 > span > input')
-deleteProduct.click()
+"Keep the name of the deleted product to check right product is deleted"
+deletedProductName = WebDriverWait(browser, 3).until(ec.presence_of_all_elements_located((
+    By.CSS_SELECTOR, '.a-row.a-spacing-none')))[0].text.split(' w/')[0]
 
-deletedProductName = browser.find_element_by_css_selector('li.a-spacing-none:nth-child(2) > span:nth-child(1)').text
-right = True
-for i in range(25):
-    if productName[i] != deletedProductName[i]:
-        right = False
 
-if right:
-    print("Right product is deleted from wish list")
+assert productName == deletedProductName, "Deletion process is failed"
 
 time.sleep(4)
 browser.close()
 browser.quit()
+
+
+
