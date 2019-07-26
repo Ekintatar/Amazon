@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        html, body {
+            margin-left: 5px;
+            margin-top: 3px;
+            font-family: monospace;
+        }
+
+        h2 {
+            color: #bf0000;
+            font-family: courier;
+            font-weight: bold;
+            font-size: 100%;
+        }
+
+        p {
+            color: black;
+            font-size: calc(10px + .4vw);
+        }
+
+        pre{
+            font-size: calc(10px + .3vw);
+        }
+
+        img {
+            padding: 0;
+            display: block;
+            margin: 0 auto;
+            max-height: 80vh;
+            max-width: 100%;
+        }
+    </style>
+    <title>test_check_fbmessenger_campaign_type_cart_abandonment</title>
+</head>
+<body>
+<div>
+    <div>
+        <h2 style="display:inline-block">Problem: </h2>
+        <p style="display:inline-block"> test_check_fbmessenger_campaign_type_cart_abandonment (test_check_fbmessenger_type_cart_abandonment.TestCheckFbmessengerTypeCartAbandonment) / 2019-07-24 16:45</p>
+    </div>
+    <div>
+        <h2>Stack Trace: </h2>
+        <p><pre>Traceback (most recent call last):
+  File &quot;/home/izzet/Desktop/izzet/atlas/base/utils/report_html.py&quot;, line 30, in wrap
+    func(self, *args, **kwargs)
+  File &quot;/home/izzet/Desktop/izzet/atlas/base/base_test.py&quot;, line 42, in __init__
+    self.driver.get(self.url)
+  File &quot;/home/izzet/Desktop/izzet/atlas/venv/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py&quot;, line 333, in get
+    self.execute(Command.GET, {&#x27;url&#x27;: url})
+  File &quot;/home/izzet/Desktop/izzet/atlas/venv/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py&quot;, line 321, in execute
+    self.error_handler.check_response(response)
+  File &quot;/home/izzet/Desktop/izzet/atlas/venv/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py&quot;, line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: cannot determine loading status
+from disconnected: received Inspector.detached event
+  (Session info: chrome=75.0.3770.100)
+  (Driver info: chromedriver=71.0.3578.80 (2ac50e7249fbd55e6f517a28131605c9fb9fe897),platform=Linux 4.15.0-54-generic x86_64)
+
+</pre></p>
+    </div>
+    <div>
+        <img src="default_image.png">
+    </div>
+    <div>
+        <h2>Browser Console Log: </h2>
+        <p></p>
+    </div>
+    <div>
+        <h2>Context: </h2>
+        <p><pre>{   &#x27;exception_class&#x27;: {   &#x27;py/type&#x27;: &#x27;selenium.common.exceptions.WebDriverException&#x27;},
+    &#x27;message&#x27;: &#x27;unknown error: cannot determine loading status\n&#x27;
+               &#x27;from disconnected: received Inspector.detached event\n&#x27;
+               &#x27;  (Session info: chrome=75.0.3770.100)\n&#x27;
+               &#x27;  (Driver info: chromedriver=71.0.3578.80 &#x27;
+               &#x27;(2ac50e7249fbd55e6f517a28131605c9fb9fe897),platform=Linux &#x27;
+               &#x27;4.15.0-54-generic x86_64)&#x27;,
+    &#x27;response&#x27;: {   &#x27;sessionId&#x27;: &#x27;415f7526a707cffa5e4bece32812997c&#x27;,
+                    &#x27;status&#x27;: 13,
+                    &#x27;value&#x27;: {   &#x27;message&#x27;: &#x27;unknown error: cannot determine &#x27;
+                                            &#x27;loading status\n&#x27;
+                                            &#x27;from disconnected: received &#x27;
+                                            &#x27;Inspector.detached event\n&#x27;
+                                            &#x27;  (Session info: &#x27;
+                                            &#x27;chrome=75.0.3770.100)\n&#x27;
+                                            &#x27;  (Driver info: &#x27;
+                                            &#x27;chromedriver=71.0.3578.80 &#x27;
+                                            &#x27;(2ac50e7249fbd55e6f517a28131605c9fb9fe897),platform=Linux &#x27;
+                                            &#x27;4.15.0-54-generic x86_64)&#x27;}},
+    &#x27;screen&#x27;: None,
+    &#x27;self&#x27;: {   &#x27;device&#x27;: None,
+                &#x27;longMessage&#x27;: True,
+                &#x27;maxDiff&#x27;: 640,
+                &#x27;url&#x27;: &#x27;https://inshoppingcart.inone.useinsider.com/&#x27;},
+    &#x27;stacktrace&#x27;: None,
+    &#x27;status&#x27;: 13,
+    &#x27;value&#x27;: {   &#x27;message&#x27;: &#x27;unknown error: cannot determine loading status\n&#x27;
+                            &#x27;from disconnected: received Inspector.detached &#x27;
+                            &#x27;event\n&#x27;
+                            &#x27;  (Session info: chrome=75.0.3770.100)\n&#x27;
+                            &#x27;  (Driver info: chromedriver=71.0.3578.80 &#x27;
+                            &#x27;(2ac50e7249fbd55e6f517a28131605c9fb9fe897),platform=Linux &#x27;
+                            &#x27;4.15.0-54-generic x86_64)&#x27;},
+    &#x27;value_json&#x27;: {   &#x27;message&#x27;: &#x27;unknown error: cannot determine loading &#x27;
+                                 &#x27;status\n&#x27;
+                                 &#x27;from disconnected: received &#x27;
+                                 &#x27;Inspector.detached event\n&#x27;
+                                 &#x27;  (Session info: chrome=75.0.3770.100)\n&#x27;
+                                 &#x27;  (Driver info: chromedriver=71.0.3578.80 &#x27;
+                                 &#x27;(2ac50e7249fbd55e6f517a28131605c9fb9fe897),platform=Linux &#x27;
+                                 &#x27;4.15.0-54-generic x86_64)&#x27;}}</pre></p>
+    </div>
+</div>
+</body>
+</html>

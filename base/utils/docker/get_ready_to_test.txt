@@ -1,0 +1,27 @@
+import os
+import pymysql
+
+from base.utils.settings import Settings
+
+
+class DockerGetReadyToTest:
+
+    def __init__(self):
+        self.settings = Settings()
+        self.sql_query = open(os.path.join(os.getcwd(), "none_user.sql"), "r").read()
+        self.run_sql(self.sql_query)
+
+    def run_sql(self, query):
+        db = pymysql.connect(self.settings.get('db_host'), self.settings.get('db_user'),
+                             self.settings.get('db_password'), self.settings.get('db_name'))
+        cursor = db.cursor()
+        try:
+            cursor.execute(query)
+        except:
+            print("Something went wrong while executing SQL Query")
+            raise Exception
+        db.commit()
+        db.close()
+
+
+DockerGetReadyToTest()
