@@ -26,45 +26,7 @@ def decorator_loader(decorator):
 def error_logger(func):
     @wraps(func)
     def wrap(self, *args, **kwargs):
-        try:
-            func(self, *args, **kwargs)
-        except Exception as e:
-            message = traceback.format_exc()
-            error_log = {
-                'case_name': str(self),
-                'timestamp': datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
-                'error_message': html.escape(message),
-                'img_name': "default_image.png",
-                'html_name': "",
-                'console_log': "Browser log can not be captured.",
-                'context': html.escape(pprint.pformat(get_context(self), indent=4))
-            }
-            timestamp = str(int(time.time()))
-            error_log['html_name'] = error_log['case_name'].split(" ")[0] + "-" + timestamp + ".html"
-            if self.driver is not None:
-                error_log['img_name'] = error_log['case_name'].split(" ")[0] + "-" + timestamp + ".png"
-                try:
-                    error_log['console_log'] = parse_browser_console_log(self)
-                    self.driver.get_screenshot_as_file(
-                        os.path.join(self.settings.get_project_dir(), "base", "utils", "error_records",
-                                     error_log["img_name"]))
-                except:
-                    error_log['img_name'] = "default_image.png"
-                self.driver.quit()
-                self.driver = None
-            create_error_html(self, error_log)
-            """This lines below should be changed to see proper error text"""
-            if self.settings.env == Environments.JENKINS_DEPLOYMENT:
-                error_records_path = self.settings.env_variables["JOB_URL"] + \
-                                     "ws/base/utils/error_records/" + error_log['html_name']
-                slacker = SlackNotifier(self.settings.get('slack_webhook_url'), "#deployment-errors")
-                slacker.create_config('QA', SlackOptions.error)
-                slacker.prepare_attachment(error_log['case_name'], error_records_path, "",
-                                           str(e), SlackOptions.red, 'Insider QA Team',
-                                           'https://inshoppingcart.inone.useinsider.com/build/favicon-53d59232cd.ico')
-                slacker.send_webhook_to_slack()
-            raise
-    return wrap
+        return wrap
 
 
 def get_context(self):

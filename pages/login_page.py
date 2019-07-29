@@ -9,7 +9,7 @@ class LoginPage(PageBase):
 
     EMAIL_INPUT = (By.ID, 'ap_email')
     PASSWORD_INPUT = (By.ID, 'ap_password')
-    LOGIN_BTN = (By.ID, 'ap_password')
+    LOGIN_BTN = (By.ID, "signInSubmit")
     LOGIN_MESSAGE = (By.ID, 'auth-warning-message-box')
 
     def __init__(self, driver):
@@ -27,11 +27,18 @@ class LoginPage(PageBase):
 
     def clear_password_input(self):
         """Clear 'password' input"""
-        self.get_element(self.PASSWORD_INPUT).click()
+        self.get_element(self.PASSWORD_INPUT).clear()
 
     def click_to_login_btn(self):
-        """Click to login button"""
+
+        """Click to login button and returns the main page"""
         self.get_element(self.LOGIN_BTN).click()
+
+
+    def fill_login_form(self, email, password):
+        """Fills login&pass inputs in login form"""
+        self.get_element(self.EMAIL_INPUT).send_keys(email)
+        self.get_element(self.PASSWORD_INPUT).send_keys(password)
 
     def is_login_message_visible(self):
         """Returns warning message if it exists"""

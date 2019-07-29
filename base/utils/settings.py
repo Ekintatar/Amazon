@@ -10,7 +10,7 @@ class Environments(enumerate):
 
 
 class Settings:
-    project_name = "atlas"
+    project_name = "Amazon"
     test_env_variable_name = "TEST_ENV"
 
     def __init__(self):
@@ -70,6 +70,12 @@ class Settings:
 
 
 class SettingKeys(enumerate):
+
+    USER_MAIL = 'user_mail'
+    USER_PASSWORD = 'user_password'
+    SITE_URL = 'site_url'
+    USER_NAME = 'user_name'
+
     PARTNER_ID = "partner_id"
     PANEL_USER = "panel_user"
     PANEL_PASSWORD = "panel_password"

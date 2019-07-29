@@ -1,7 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
-
+from pages.product_page import ProductPage
 from base.page_base import PageBase
 
 class ProductListPage(PageBase):
@@ -28,10 +28,12 @@ class ProductListPage(PageBase):
 
         """
         self.get_element_list(self.PRODUCTS)[order-1].click()
+        return ProductPage(self.driver)
 
     def click_to_next_page(self):
-        """Click to next clickable page"""
+        """Click to next clickable page and returns product list page"""
         self.get_element_list(self.CLICKABLE_NEXT_PAGES)[0].click()
+        return ProductListPage(self.driver)
 
     def get_searched_word(self):
         """Reunrs the searched product name"""

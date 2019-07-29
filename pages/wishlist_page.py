@@ -8,7 +8,7 @@ class WishlistPage(PageBase):
     """ """
 
     DELETE_BTN = (By.CSS_SELECTOR, '#a-autoid-7 > span > input')
-    DELETED_PRODUCT_NAME = (By.ID, 'WLHUC_info')
+    DELETED_PRODUCT_NAME = (By.CLASS_NAME, 'a-row.a-spacing-none')
 
     def __init__(self, driver):
         super(WishlistPage, self).__init__(driver)
@@ -23,4 +23,4 @@ class WishlistPage(PageBase):
 
     def get_deleted_product_name(self):
         """Returns deleted product name"""
-        return self.wait_for_element_visible(self.DELETED_PRODUCT_NAME).text
+        return self.get_element_list(self.DELETED_PRODUCT_NAME)[0].text.split(' \n')[0]
