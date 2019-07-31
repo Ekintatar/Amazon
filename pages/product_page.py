@@ -26,7 +26,3 @@ class ProductPage(PageBase):
         """Click 'Add list' button and return add list popup"""
         self.get_element(self.ADD_LIST_BTN).click()
         return AddListPopup(self.driver)
-
-
-
-
