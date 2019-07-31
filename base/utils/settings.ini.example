@@ -1,0 +1,99 @@
+[ALL]
+partner_id = 10001737
+panel_user = your_account_here@useinsider.com
+panel_password = None
+partner_name = inshoppingcart
+partner_panel_url = https://inshoppingcart.inone.useinsider.com/
+partner_site_url = http://inshoppingcart.com/ins-html/
+gachapon_partner = seleniumpartner
+gachapon_url = http://gachapon.useinsider.com/
+collaborate_mail = collaborate@mail.com
+collaborate_password = None
+view_only_mail = view@mail.com
+view_only_password = None
+outsource_mail = outsource@mail.com
+outsource_password = None
+norole_mail = norole@mail.com
+norole_password = None
+norole_deactive_mail = norole.deactive@mail.com
+norole_deactive_password = None
+hasrole_deactive_mail = hasrole.deactive@mail.com
+hasrole_deactive_password = None
+selenium_mail = selenium@mail.com
+selenium_password = None
+lock_mail = lock@mail.com
+lock_password = None
+threshold_mail = lock_threshold@mail.com
+threshold_password = None
+contact_api_key = None
+google_map_apis_key = None
+mail_api_key = None
+
+qa_gmail = qa.useinsider@gmail.com
+qa_gmail_password = None
+qa_gmail_imap_server = imap.gmail.com
+reset_mail = None
+reset_mail_password = None
+fb_email = None
+fb_password = None
+fb_messenger_email = None
+fb_messenger_password = None
+fb_messenger_account_name = None
+fb_messenger_login_link = None
+
+insider_url = http://useinsider.com
+confluence_url = https://insider-portal.atlassian.net
+jira_url = https://winsider.atlassian.net
+jira_token= None
+slack_webhook_url = None
+mail_url = https://accounts.google.com/signin
+
+db_host = None
+db_user = None
+db_password = None
+db_name = None
+db_name_useinsider = None
+
+reader_db_host = None
+reader_db_password = None
+reader_db_user = None
+
+token_db_host = None
+token_db_user = None
+token_db_password = None
+token_db_port = None
+
+qa_db_host = None
+qa_db_user = None
+qa_db_password = None
+qa_db_port = None
+qa_db_schema = None
+
+remote_driver = no
+hub_ip = None
+github_url = https://api.github.com/repos/sociaplus/honey-badger/releases/latest
+github_token = None
+
+confluence_generate_page_id = 600440848
+
+[JENKINS]
+ci_jenkins_url = http://52.212.111.14:8080/
+jenkins_username = None
+jenkins_password = None
+job_name = None
+
+
+[TEST]
+hub_ip = selenium_hub
+db_host = mysql
+db_user = homestead
+db_password = secret
+db_name = partner_inshoppingcart
+
+token_db_host = mysql
+token_db_user = homestead
+token_db_password = secret
+token_db_port = 3306
+
+
+[LOCAL]
